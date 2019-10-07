@@ -332,40 +332,6 @@ declare module "modbus-stream" {
             ) => Server;
         };
     }
-
-    interface SerialTransportOptions extends BaseTransportOptions {
-        slaveId?: number;
-        maxDataInterval?: number;
-        mode?: "ascii";
-    }
-
-    class SerialTransport extends BaseTransport {
-        constructor(options?: SerialTransportOptions);
-
-        wrap(pdu: any, options?: SerialTransportOptions, next?: () => void): Buffer;
-
-        unwrap(data: Buffer): UnwrappedData;
-
-        clearSend(): void;
-
-        static crc16(buffer: Buffer): number;
-
-        static prepare(options?: SerialTransportOptions): (stream: Stream) => SerialTransport;
-    }
-
-    interface SerialDriverOptions extends StreamOptions {
-        baudRate?: number;
-        dataBits?: number;
-        stopBits?: number;
-        parity?: string;
-    }
-
-    class SerialDriver {
-        connect(device: string, options?: SerialDriverOptions): {
-            attach: (transport: SerialTransport, next: (err?: any, connection?: Stream) => void) => any;
-        };
-    }
-
     class UdpStream extends Readable {
         constructor(msg: Buffer, info: AddressInfo);
     }
@@ -405,13 +371,11 @@ declare module "modbus-stream" {
     const transports: {
         tcp: TCPTransport;
         ascii: ASCIITransport;
-        serial: SerialTransport;
     };
 
     const drivers: {
         tcp: TCPDriver;
         udp: UDPDriver;
-        serial: SerialDriver;
     };
 
     const tcp: {
@@ -438,14 +402,6 @@ declare module "modbus-stream" {
             options: StreamOptions,
             next: (connection: TCPStream) => void
         ): Server;
-    };
-
-    const serial: {
-        connect(
-            device?: string,
-            options?: SerialDriverOptions & SerialTransportOptions,
-            next?: (err: Error | null, connection: Stream) => void
-        ): void;
     };
 
     // @todo reference to modbus-pdu (missing types)

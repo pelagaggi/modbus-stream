@@ -2,9 +2,9 @@
 	"name"         : "modbus-stream",
 	"version"      : "0.44.0",
 	"author"       : "Diogo Resende <dresende@thinkdigital.pt>",
-	"repository"   : "https://github.com/node-modbus/stream",
+	"repository"   : "https://github.com/pelagaggi/modbus-stream",
 	"license"      : "MIT",
-	"keywords"     : [ "modbus", "serial", "rtu", "ascii", "tcp", "stream" ],
+	"keywords"     : [ "modbus", "rtu", "ascii", "tcp", "stream" ],
 	"main"         : "lib/modbus",
 	"types"        : "types",
 	"scripts"      : {

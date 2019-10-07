@@ -25,11 +25,6 @@ exports.tcp_header = function (pdu, transactionId, protocol, unitId) {
 	return header;
 };
 
-exports.serial_header = function (slaveId) {
-	if (typeof slaveId == "undefined") slaveId = 1;
-
-	return buffer.from([ slaveId ]);
-};
 
 exports.ascii_wrap = function (slaveId, pdu) {
 	var start  = buffer.from([ 0x3A ]);
